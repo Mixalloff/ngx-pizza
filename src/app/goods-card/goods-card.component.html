@@ -1,0 +1,26 @@
+<md-card class="chat-card" fxLayout="column">
+  <md-card-header>
+    <div md-card-avatar class="example-header-image logo">
+      <img class="vendor-logo" src="http://363636.ru/local/templates/sayuri/images/logo.jpg" alt="">
+    </div>
+    <md-card-title>{{ goodItem.name }}</md-card-title>
+    <md-card-subtitle>
+      <i>Ресторан: </i> {{ goodItem.vendor }}
+    </md-card-subtitle>
+  </md-card-header>
+  <img md-card-image [src]="goodItem.image">
+  <md-card-content>
+    <h3>{{ goodItem.price }} руб.</h3>
+    <p class="ingridients-block">
+      {{ goodItem.details.join(', ') }}
+    </p>
+    <div class="properties-block">
+      <span [hidden]="!goodItem.diametr" class="property-item">Диаметр: {{ goodItem.diametr }} см.</span>
+      <span [hidden]="!goodItem.weight"  class="property-item">Вес: {{ goodItem.weight }} г.</span>
+    </div>
+  </md-card-content>
+  <md-card-actions>
+    <a md-button [href]="goodItem.href" target="_blank">Перейти</a>
+    <button md-button>Заказать</button>
+  </md-card-actions>
+</md-card>

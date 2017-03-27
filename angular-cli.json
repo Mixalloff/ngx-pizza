@@ -17,9 +17,10 @@
       "polyfills": "polyfills.ts",
       "test": "test.ts",
       "tsconfig": "tsconfig.json",
-      "prefix": "app",
+      "prefix": "pizza",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "pizza-theme.scss"
       ],
       "scripts": [],
       "environments": {
