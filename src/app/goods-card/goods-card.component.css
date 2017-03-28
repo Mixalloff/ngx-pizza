@@ -11,3 +11,7 @@
 :host .property-item {
   color: #5a5a5a;
 }
+
+:host .good-card-header {
+  height: auto!important;
+}
