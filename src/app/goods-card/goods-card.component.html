@@ -3,9 +3,9 @@
     <div md-card-avatar class="example-header-image logo">
       <img class="vendor-logo" src="http://363636.ru/local/templates/sayuri/images/logo.jpg" alt="">
     </div>
-    <md-card-title>{{ goodItem.name }}</md-card-title>
+    <md-card-title class="good-name text-uppercase text-bold">{{ goodItem.name }}</md-card-title>
     <md-card-subtitle>
-      <i>Ресторан: </i> {{ goodItem.vendor }}
+      {{ goodItem.vendor }}
     </md-card-subtitle>
   </md-card-header>
   <img md-card-image [src]="goodItem.image">
@@ -20,7 +20,7 @@
     </div>
   </md-card-content>
   <md-card-actions>
-    <a md-button [href]="goodItem.href" target="_blank">Перейти</a>
-    <button md-button>Заказать</button>
+    <a class="text-uppercase" md-button [href]="goodItem.href" target="_blank">Перейти</a>
+    <button class="text-uppercase" md-button>Заказать</button>
   </md-card-actions>
 </md-card>
