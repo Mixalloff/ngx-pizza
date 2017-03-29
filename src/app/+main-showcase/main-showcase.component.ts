@@ -14,10 +14,7 @@ export class MainShowcaseComponent implements OnInit {
   ngOnInit() {
     this.mainShowcaseService
       .getGoods()
-      .subscribe(goods => {
-        console.log(goods);
-        this.goods = goods;
-      });
+      .subscribe(goods => this.goods = goods);
   }
 
 }

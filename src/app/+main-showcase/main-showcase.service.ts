@@ -1,19 +1,14 @@
+import { HttpRestService, GET, Path } from './../core/ngx-http-rest/ngx-http-rest.service';
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import RestConfig from 'app/core/configs/rest.config';
 
 @Injectable()
-export class MainShowcaseService {
-  constructor(private http: Http) {}
+@Path(`${ RestConfig.BASE_PATH }/pizzas`)
+export class MainShowcaseService extends HttpRestService {
 
-  getGoods(): Observable<any> {
-    const url = `http://localhost:3030/pizzas`;
-    const headers = new Headers();
-    headers.append('Allow', '*');
-    headers.append('Access-Control-Allow-Origin', '*');
+  @GET
+  getGoods(): any {}
 
-    return this.http
-      .get( url, { headers } )
-      .map( res => res.json() );
-  }
 }
