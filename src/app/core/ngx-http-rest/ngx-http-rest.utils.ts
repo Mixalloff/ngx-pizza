@@ -99,6 +99,7 @@ export class HttpRestUtils {
         const body = HttpRestUtils.collectBody(target, key, args);
         const search = HttpRestUtils.collectQueryParams(target, key, args);
         const headers = HttpRestUtils.collectHeaders(target, key, args);
+        const producesType = HttpRestUtils.produce(target, key, args);
         const params: RequestOptionsArgs = {
           url,
           body,
@@ -106,11 +107,19 @@ export class HttpRestUtils {
           headers,
           method: requestMethodName
         };
-
-        return this.request(params)
+        
+        return this.request(params, producesType)
           .map(response => HttpRestUtils.transform(target, key, response));
       };
     };
+  }
+
+  private static produce(target: any, methodName: string, args: any[]) {
+    if (target[RESOURSE_METADATA_ROOT].methods
+     && target[RESOURSE_METADATA_ROOT].methods[methodName]) {
+      return target[RESOURSE_METADATA_ROOT].methods[methodName].produces;
+    }
+    return undefined;
   }
 
   private static collectUrl(target: any, methodName: string, args: any[]) {
