@@ -8,7 +8,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { MainShowcaseComponent } from './+main-showcase/main-showcase.component';
+import { MainShowcaseComponent } from './main-showcase/main-showcase.component';
 import { GoodsCardComponent } from './goods-card/goods-card.component';
 import { FilterBlockComponent } from './filter-block/filter-block.component';
 import { FilterPaginationComponent } from './filter-pagination/filter-pagination.component';

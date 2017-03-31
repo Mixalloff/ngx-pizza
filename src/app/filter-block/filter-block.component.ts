@@ -19,10 +19,10 @@ export class FilterBlockComponent implements OnInit {
   constructor(private filterBlockService: FilterBlockService) { }
 
   ngOnInit() {
-    this.search();
+    this.run();
   }
 
-  search() {
+  run() {
     this.filterBlockService
       .getGoods(this.pagination.skip, this.pagination.limit)
       .subscribe(items => {
@@ -31,8 +31,19 @@ export class FilterBlockComponent implements OnInit {
       });
   }
 
+  search() {
+    this.pagination = DEFAULT_PAGINATION;
+    this.run();
+  }
+
+  reset() {
+    this.filters = {};
+    this.pagination = DEFAULT_PAGINATION;
+    this.run();
+  }
+
   pageChanged(pagination: Pagination) {
     this.pagination = pagination;
-    this.search();
+    this.run();
   }
 }

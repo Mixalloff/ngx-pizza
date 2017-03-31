@@ -1,0 +1,4 @@
+:host .limit-info-row,
+:host .pages-btns {
+  display: inline-block;
+}

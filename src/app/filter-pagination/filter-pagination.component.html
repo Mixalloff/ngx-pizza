@@ -6,9 +6,12 @@
     </md-option>
   </md-select>
 
-  <button class="transparent" md-icon-button [disabled]="!pagination.skip" (click)="back()"><md-icon>chevron_left</md-icon></button>
-  <button class="transparent" md-icon-button [disabled]="pagination.skip + pagination.limit >= totalCount" (click)="forward()"><md-icon>chevron_right</md-icon></button>
 
-  <span>{{ constructLimitInfoRow() }}</span>
+  <div class="pages-btns">
+    <button class="transparent" md-icon-button [disabled]="!pagination.skip" (click)="back()"><md-icon>chevron_left</md-icon></button>
+    <button class="transparent" md-icon-button [disabled]="pagination.skip + pagination.limit >= totalCount" (click)="forward()"><md-icon>chevron_right</md-icon></button>
+  </div>
+
+  <span class="limit-info-row">{{ constructLimitInfoRow() }}</span>
 
 </div>

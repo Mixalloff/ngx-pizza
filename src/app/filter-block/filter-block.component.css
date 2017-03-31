@@ -1,9 +1,24 @@
 :host {
-  position: fixed;
-  right: 0;
-  margin: 3%;
+  /*position: fixed;*/
+  /*width: 100%;*/
 }
 
 :host .select-field {
-  margin: 14px 0;
+  margin: 8px;
+}
+
+:host .filters-content-block {
+  margin: 0;
+}
+
+:host .filters-label {
+  align-self: center;
+}
+
+:host .filters-fields {
+  padding: 0 20px;
+}
+
+:host .filter-actions {
+  align-items: center;
 }

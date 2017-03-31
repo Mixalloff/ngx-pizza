@@ -1,30 +1,32 @@
 <div class="filters-container">
   <md-card>
 
-    <md-card-header class="good-card-header">
-      <md-card-title class="good-name text-uppercase text-bold">Фильтры</md-card-title>
-    </md-card-header>
+    <md-card-content class="filters-content-block" fxLayout="row">
+      <strong class="text-uppercase filters-label">Фильтры:</strong>
 
-    <md-card-content fxLayout="column">
+      <div class="filters-fields">
 
-      <md-input-container>
-        <input mdInput placeholder="Название блюда">
-      </md-input-container>
+        <md-input-container>
+          <input mdInput placeholder="Название блюда" [(ngModel)]="filters.foodName">
+        </md-input-container>
 
-      <md-select class="select-field" placeholder="Ресторан" [(ngModel)]="filters.vendor" name="vendor">
-        <md-option *ngFor="let vendor of ['Саюри', 'Voodo Pizza', 'Фарфор']" [value]="vendor">
-          {{vendor}}
-        </md-option>
-      </md-select>
+        <md-select class="select-field" placeholder="Ресторан" [(ngModel)]="filters.vendor" name="vendor">
+          <md-option *ngFor="let vendor of ['Саюри', 'Voodo Pizza', 'Фарфор']" [value]="vendor">
+            {{vendor}}
+          </md-option>
+        </md-select>
 
+      </div>
+
+      <div fxFlex></div>
+
+      <div class="filter-actions" fxLayout="row">
+        <button class="text-uppercase" md-button (click)="search()">Поиск</button>
+        <button class="text-uppercase" md-button (click)="reset()">Сброс</button>
+        <pizza-filter-pagination [totalCount]="totalCount" (changed)="pageChanged($event)"></pizza-filter-pagination>
+      </div>
+      
     </md-card-content>
 
-    <md-card-actions>
-      <button class="text-uppercase" md-button (click)="search()">Поиск</button>
-      <button class="text-uppercase" md-button>Сброс</button>
-    </md-card-actions>
-
-
-    <pizza-filter-pagination [totalCount]="totalCount" (changed)="pageChanged($event)"></pizza-filter-pagination>
   </md-card>
 </div>
