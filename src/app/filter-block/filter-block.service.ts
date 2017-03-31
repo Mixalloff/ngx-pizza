@@ -1,4 +1,4 @@
-import { HttpRestService, GET, Path, QueryParam } from './../core/ngx-http-rest/ngx-http-rest.service';
+import { HttpRestService, GET, Path, QueryParam } from 'ngx-http-rest';
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
