@@ -12,9 +12,10 @@ export class MainShowcaseComponent implements OnInit {
   constructor(private mainShowcaseService: MainShowcaseService) { }
 
   ngOnInit() {
-    this.mainShowcaseService
-      .getGoods()
-      .subscribe(goods => this.goods = goods);
+  }
+
+  setItems(items) {
+    this.goods = items;
   }
 
 }

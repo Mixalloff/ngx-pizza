@@ -142,8 +142,8 @@ export class HttpRestUtils {
         .join('/');
 
     if (!isRelativePath) {
-      const absolutePath = methodUrlWithParams.split('/').slice(1).join('/');
-      return `http://${ absolutePath }`;
+      const [absolutePrefix, ...paths] = methodUrlWithParams.split('/');
+      return `${ absolutePrefix }//${ paths.join('/') }`;
     }
     return methodUrlWithParams;
   }
@@ -167,7 +167,7 @@ export class HttpRestUtils {
     Object.keys(target[RESOURSE_METADATA_ROOT].params[methodName].query)
       .forEach(paramName => {
         const index = target[RESOURSE_METADATA_ROOT].params[methodName].query[paramName];
-        if (paramName && args[index]) queryParams.set(paramName, args[index]);
+        if (paramName && args[index] != null) queryParams.set(paramName, args[index]);
       });
     return queryParams;
   }

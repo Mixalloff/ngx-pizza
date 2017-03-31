@@ -1,3 +1,9 @@
-<div fxLayout="row" fxLayoutAlign="space-around" fxLayoutWrap>
-  <pizza-goods-card *ngFor="let good of goods" fxFlex="95" fxFlex.gt-xs="50" fxFlex.gt-sm="25" fxFlex.gt-md="20" [goodItem]="good"></pizza-goods-card>
+<div fxLayout="row">
+  
+  <div class="goods-container" fxFlex fxLayout="row" fxLayoutAlign="space-around" fxLayoutWrap>
+    <pizza-goods-card *ngFor="let good of goods" fxFlex="95" fxFlex.gt-xs="50" fxFlex.gt-sm="25" fxFlex.gt-md="20" [goodItem]="good"></pizza-goods-card>
+  </div>
+  <div class="filters-container" fxFlex="20">
+    <pizza-filter-block (items)="setItems($event)"></pizza-filter-block>
+  </div>
 </div>
