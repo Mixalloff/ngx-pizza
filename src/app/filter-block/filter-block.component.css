@@ -22,3 +22,8 @@
 :host .filter-actions {
   align-items: center;
 }
+
+:host .sort-block {
+  display: flex;
+  align-items: center;
+}

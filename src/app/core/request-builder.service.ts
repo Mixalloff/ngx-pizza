@@ -17,4 +17,13 @@ export class RequestBuilder {
     Object.assign(this._requestObject, filterField);
   }
 
+  public setSorting(sortField: SortField) {
+    if (!sortField.field) return;
+    const sortingObject = { [`$sort[${sortField.field}]`]: sortField.direction || 1 };
+    Object.assign(this._requestObject, sortingObject);
+  }
+
+  public reset() {
+    this._requestObject = {};
+  }
 }

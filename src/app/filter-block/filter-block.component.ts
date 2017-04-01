@@ -12,7 +12,13 @@ const DEFAULT_PAGINATION: Pagination = { skip: 0, limit: 25 };
 })
 export class FilterBlockComponent implements OnInit {
   public filters = {};
-  private pagination: Pagination = DEFAULT_PAGINATION;
+  public sortFields = [
+    { name: 'price', desc: 'Цена' },
+    { name: 'weight', desc: 'Вес' },
+    { name: 'name', desc: 'Название' }
+  ];
+  public sortField: SortField = {};
+  public pagination: Pagination = DEFAULT_PAGINATION;
   private totalCount: number;
   private requestBuilder = new RequestBuilder();
 
@@ -25,7 +31,9 @@ export class FilterBlockComponent implements OnInit {
   }
 
   run() {
+    this.requestBuilder.reset();
     this.requestBuilder.setPagination(this.pagination);
+    this.requestBuilder.setSorting(this.sortField);
     /*
      Example of filter items, that price greater than 600
      this.requestBuilder.addFilter('price', '$gt', 600);
@@ -51,6 +59,18 @@ export class FilterBlockComponent implements OnInit {
 
   pageChanged(pagination: Pagination) {
     this.pagination = pagination;
+    this.run();
+  }
+
+  toogleSortDirection() {
+    this.sortField.direction = this.sortField.direction
+                             ? this.sortField.direction * (-1)
+                             : -1;
+    this.run();
+  }
+
+  clearSorting() {
+    this.sortField = {};
     this.run();
   }
 }

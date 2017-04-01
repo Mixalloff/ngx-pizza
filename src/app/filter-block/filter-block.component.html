@@ -2,9 +2,9 @@
   <md-card>
 
     <md-card-content class="filters-content-block" fxLayout="row">
-      <strong class="text-uppercase filters-label">Фильтры:</strong>
+      <!--<strong class="text-uppercase filters-label">Фильтры:</strong>-->
 
-      <div class="filters-fields">
+      <!--<div class="filters-fields">
 
         <md-input-container>
           <input mdInput placeholder="Название блюда" [(ngModel)]="filters.foodName">
@@ -12,17 +12,32 @@
 
         <md-select class="select-field" placeholder="Ресторан" [(ngModel)]="filters.vendor" name="vendor">
           <md-option *ngFor="let vendor of ['Саюри', 'Voodo Pizza', 'Фарфор']" [value]="vendor">
-            {{vendor}}
+            {{ vendor }}
           </md-option>
         </md-select>
 
+      </div>-->
+      
+      <div class="sort-block">
+        <i class="material-icons">sort</i>
+        <md-select class="select-field" placeholder="Сортировать по" [(ngModel)]="sortField.field" name="sortField" (change)="run()">
+          <md-option *ngFor="let field of sortFields" [value]="field.name">
+            {{ field.desc }}
+          </md-option>
+        </md-select>
+        <button class="transparent" *ngIf="sortField.field" md-icon-button (click)="toogleSortDirection()">
+          <i class="material-icons">{{ sortField.direction == -1 ? 'arrow_upward' : 'arrow_downward' }}</i>
+        </button>
+        <button class="transparent" *ngIf="sortField.field" md-icon-button (click)="clearSorting()">
+          <i class="material-icons">close</i>
+        </button>
       </div>
 
       <div fxFlex></div>
 
       <div class="filter-actions" fxLayout="row">
-        <button class="text-uppercase" md-button (click)="search()">Поиск</button>
-        <button class="text-uppercase" md-button (click)="reset()">Сброс</button>
+        <!--<button class="text-uppercase" md-button (click)="search()">Поиск</button>
+        <button class="text-uppercase" md-button (click)="reset()">Сброс</button>-->
         <pizza-filter-pagination [totalCount]="totalCount" (changed)="pageChanged($event)"></pizza-filter-pagination>
       </div>
       
