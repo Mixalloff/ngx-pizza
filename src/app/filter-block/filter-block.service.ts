@@ -1,4 +1,4 @@
-import { HttpRestService, GET, Path, QueryParam } from 'ngx-http-rest';
+import { HttpRestService, GET, Path, QueryParam, QueryParams } from 'ngx-http-rest';
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -9,6 +9,6 @@ import RestConfig from 'app/core/configs/rest.config';
 export class FilterBlockService extends HttpRestService {
 
   @GET
-  getGoods(@QueryParam('$skip') skip?: number,
-           @QueryParam('$limit') limit?: number): any {}
+  getGoods(@QueryParams queryObj: any): any {}
+
 }
