@@ -1,6 +1,6 @@
 import { RequestBuilder } from './../core/request-builder.service';
 import { FilterBlockService } from './filter-block.service';
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, trigger, transition, style, animate } from '@angular/core';
 
 const DEFAULT_PAGINATION: Pagination = { skip: 0, limit: 25 };
 
@@ -8,7 +8,22 @@ const DEFAULT_PAGINATION: Pagination = { skip: 0, limit: 25 };
   selector: 'pizza-filter-block',
   templateUrl: './filter-block.component.html',
   styleUrls: ['./filter-block.component.css'],
-  providers: [FilterBlockService]
+  providers: [FilterBlockService],
+   animations: [
+    trigger(
+      'enterAnimation', [
+          transition(':enter', [
+              style({ height: 0, opacity: 0 }),
+              animate(500, style({ height: '50px', opacity: 1 }))
+            ]
+          ),
+         transition(':leave', [
+              style({ height: '*', opacity: 1 }),
+              animate(250, style({ height: 0, opacity: 0 }))
+          ])
+      ]
+    )
+  ],
 })
 export class FilterBlockComponent implements OnInit {
   public filters: Filters = {

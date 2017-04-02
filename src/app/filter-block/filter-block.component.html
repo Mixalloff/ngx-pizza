@@ -2,7 +2,7 @@
   <md-card>
 
     <md-card-content class="filters-content-block" fxLayout="column">
-      <div fxLayout="row" *ngIf="filtersOpened">
+      <div fxLayout="row" *ngIf="filtersOpened" [@enterAnimation]="filtersOpened">
         <div class="filters-fields">
             <md-select class="select-field" placeholder="Ресторан" [(ngModel)]="filters.vendor.value" name="vendor" (change)="run()">
               <md-option *ngFor="let vendor of filters.vendor.settings.options" [value]="vendor">
