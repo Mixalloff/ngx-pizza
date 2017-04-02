@@ -30,7 +30,7 @@ export class FilterPaginationComponent {
   constructLimitInfoRow() {
     const from = this.pagination.skip,
           to = Math.min(this.pagination.skip + this.pagination.limit, this.totalCount),
-          total = this.totalCount || this.pagination.skip + this.pagination.limit;
+          total = this.totalCount;
 
     return `${ from } - ${ to } из ${ total }`;
   }

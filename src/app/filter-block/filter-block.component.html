@@ -3,20 +3,32 @@
 
     <md-card-content class="filters-content-block" fxLayout="row">
       <!--<strong class="text-uppercase filters-label">Фильтры:</strong>-->
+      
+      <!-- Need replace into full filter -->
+      <div class="filters-fields">
 
-      <!--<div class="filters-fields">
-
-        <md-input-container>
-          <input mdInput placeholder="Название блюда" [(ngModel)]="filters.foodName">
-        </md-input-container>
-
-        <md-select class="select-field" placeholder="Ресторан" [(ngModel)]="filters.vendor" name="vendor">
-          <md-option *ngFor="let vendor of ['Саюри', 'Voodo Pizza', 'Фарфор']" [value]="vendor">
+        <md-select class="select-field" placeholder="Ресторан" [(ngModel)]="filters.vendor.value" name="vendor" (change)="run()">
+          <md-option *ngFor="let vendor of filters.vendor.settings.options" [value]="vendor">
             {{ vendor }}
           </md-option>
         </md-select>
 
-      </div>-->
+        <div class="price-filter">
+          <label>Цена до</label>
+          <md-slider
+              class="price-slider"
+              [(ngModel)]="filters.priceMax.value"
+              [max]="filters.priceMax.settings.max"
+              [step]="filters.priceMax.settings.step"
+              [thumb-label]="filters.priceMax.settings.thumbLabel"
+              [value]="filters.priceMax.value"
+              (change)="run()">
+          </md-slider>
+          <md-input-container class="price-input">
+            <input mdInput [(ngModel)]="filters.priceMax.value" (change)="run()">
+          </md-input-container>
+        </div>
+      </div>
       
       <div class="sort-block">
         <i class="material-icons">sort</i>

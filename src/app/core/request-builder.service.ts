@@ -1,5 +1,3 @@
-type RequestOperator = '$in' | '$nin' | '$lt' | '$lte' | '$gt' | '$gte' | '$ne' | '$or';
-
 export class RequestBuilder {
   private _requestObject: any = {};
 
@@ -19,7 +17,7 @@ export class RequestBuilder {
 
   public setSorting(sortField: SortField) {
     if (!sortField.field) return;
-    const sortingObject = { [`$sort[${sortField.field}]`]: sortField.direction || 1 };
+    const sortingObject = { [`$sort[${ sortField.field }]`]: sortField.direction || 1 };
     Object.assign(this._requestObject, sortingObject);
   }
 

@@ -11,7 +11,10 @@ const DEFAULT_PAGINATION: Pagination = { skip: 0, limit: 25 };
   providers: [FilterBlockService]
 })
 export class FilterBlockComponent implements OnInit {
-  public filters = {};
+  public filters: Filters = {
+    vendor: { operator: '$eq', settings: { options: ['Саюри', 'Voodoo-pizza', 'Фарфор'] } },
+    priceMax: { name: 'price', operator: '$lt', value: 1000, settings: { max: 1000, thumbLabel: true, step: 10 } }
+  };
   public sortFields = [
     { name: 'price', desc: 'Цена' },
     { name: 'weight', desc: 'Вес' },
@@ -34,6 +37,11 @@ export class FilterBlockComponent implements OnInit {
     this.requestBuilder.reset();
     this.requestBuilder.setPagination(this.pagination);
     this.requestBuilder.setSorting(this.sortField);
+
+    Object.keys(this.filters).forEach(filterName => {
+      const filterObj = this.filters[filterName];
+      this.requestBuilder.addFilter(filterObj.name || filterName, filterObj.operator, filterObj.value);
+    } );
     /*
      Example of filter items, that price greater than 600
      this.requestBuilder.addFilter('price', '$gt', 600);

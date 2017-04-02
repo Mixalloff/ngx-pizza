@@ -27,3 +27,11 @@
   display: flex;
   align-items: center;
 }
+
+:host .price-filter {
+  display: inline-block;
+}
+
+:host .price-input {
+  width: 4ch;
+}
