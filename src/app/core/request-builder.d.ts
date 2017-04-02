@@ -16,5 +16,10 @@ declare enum SortDirection {
 }
 
 interface Filters {
-  [filterName: string]: { operator: RequestOperator, value?: any, settings?: any, name?: string }
+  [filterName: string]: { operator: RequestOperator, value?: any, defaultValue?: any, settings?: any, name?: string }
+}
+
+interface SortFieldSelector {
+  name: string;
+  desc: string;
 }

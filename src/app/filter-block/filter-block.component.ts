@@ -3,6 +3,15 @@ import { FilterBlockService } from './filter-block.service';
 import { Component, OnInit, Output, EventEmitter, trigger, transition, style, animate } from '@angular/core';
 
 const DEFAULT_PAGINATION: Pagination = { skip: 0, limit: 25 };
+const DEFAULT_FILTERS: Filters = {
+  vendor: { operator: '$eq', settings: { options: ['Саюри', 'Voodoo-pizza', 'Фарфор'] } },
+  priceMax: { name: 'price', operator: '$lt', value: 1000, defaultValue: 1000, settings: { max: 1000, thumbLabel: true, step: 10 } }
+};
+const SORT_FIELDS: Array<SortFieldSelector> = [
+    { name: 'price', desc: 'Цена' },
+    { name: 'weight', desc: 'Вес' },
+    { name: 'name', desc: 'Название' }
+  ];
 
 @Component({
   selector: 'pizza-filter-block',
@@ -14,7 +23,7 @@ const DEFAULT_PAGINATION: Pagination = { skip: 0, limit: 25 };
       'enterAnimation', [
           transition(':enter', [
               style({ height: 0, opacity: 0 }),
-              animate(500, style({ height: '50px', opacity: 1 }))
+              animate(250, style({ height: '50px', opacity: 1 }))
             ]
           ),
          transition(':leave', [
@@ -26,15 +35,8 @@ const DEFAULT_PAGINATION: Pagination = { skip: 0, limit: 25 };
   ],
 })
 export class FilterBlockComponent implements OnInit {
-  public filters: Filters = {
-    vendor: { operator: '$eq', settings: { options: ['Саюри', 'Voodoo-pizza', 'Фарфор'] } },
-    priceMax: { name: 'price', operator: '$lt', value: 1000, settings: { max: 1000, thumbLabel: true, step: 10 } }
-  };
-  public sortFields = [
-    { name: 'price', desc: 'Цена' },
-    { name: 'weight', desc: 'Вес' },
-    { name: 'name', desc: 'Название' }
-  ];
+  public filters: Filters = Object.assign({}, DEFAULT_FILTERS);
+  public sortFields: Array<SortFieldSelector> = SORT_FIELDS;
   public sortField: SortField = {};
   public pagination: Pagination = DEFAULT_PAGINATION;
   private totalCount: number;
@@ -75,8 +77,12 @@ export class FilterBlockComponent implements OnInit {
   }
 
   reset() {
-    this.filters = {};
+    // tslint:disable-next-line:forin
+    for (const key in this.filters) {
+      this.filters[key].value = this.filters[key].defaultValue;
+    }
     this.pagination = DEFAULT_PAGINATION;
+    this.sortField = {};
     this.run();
   }
 

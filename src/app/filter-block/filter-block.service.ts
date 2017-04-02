@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import RestConfig from 'app/core/configs/rest.config';
 
 @Injectable()
-@Path(`${ RestConfig.BASE_PATH }/pizzas`)
+@Path(`${ RestConfig.BASE_PATH }/goods`)
 export class FilterBlockService extends HttpRestService {
 
   @GET
