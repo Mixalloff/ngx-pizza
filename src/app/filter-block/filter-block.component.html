@@ -1,56 +1,67 @@
 <div class="filters-container">
   <md-card>
 
-    <md-card-content class="filters-content-block" fxLayout="row">
-      <!--<strong class="text-uppercase filters-label">Фильтры:</strong>-->
+    <md-card-content class="filters-content-block" fxLayout="column">
+      <div fxLayout="row" *ngIf="filtersOpened">
+        <div class="filters-fields">
+            <md-select class="select-field" placeholder="Ресторан" [(ngModel)]="filters.vendor.value" name="vendor" (change)="run()">
+              <md-option *ngFor="let vendor of filters.vendor.settings.options" [value]="vendor">
+                {{ vendor }}
+              </md-option>
+            </md-select>
+
+            <div class="price-filter">
+              <label>Цена до</label>
+              <md-slider
+                  class="price-slider"
+                  [(ngModel)]="filters.priceMax.value"
+                  [max]="filters.priceMax.settings.max"
+                  [step]="filters.priceMax.settings.step"
+                  [thumb-label]="filters.priceMax.settings.thumbLabel"
+                  [value]="filters.priceMax.value"
+                  (change)="run()">
+              </md-slider>
+              <md-input-container class="price-input">
+                <input mdInput [(ngModel)]="filters.priceMax.value" (change)="run()">
+              </md-input-container>
+            </div>
+          </div>
+          <div fxFlex></div>
+          <div>
+            <button class="text-uppercase" md-button (click)="search()">Поиск</button>
+            <button class="text-uppercase" md-button (click)="reset()">Сброс</button>
+          </div>
+      </div>
+      <div fxLayout="row">
       
-      <!-- Need replace into full filter -->
-      <div class="filters-fields">
+        <div class="sort-block">
+          <i class="material-icons">sort</i>
+          <md-select class="select-field" placeholder="Сортировать по" [(ngModel)]="sortField.field" name="sortField" (change)="run()">
+            <md-option *ngFor="let field of sortFields" [value]="field.name">
+              {{ field.desc }}
+            </md-option>
+          </md-select>
+          <button class="transparent" *ngIf="sortField.field" md-icon-button (click)="toogleSortDirection()">
+            <i class="material-icons">{{ sortField.direction == -1 ? 'arrow_upward' : 'arrow_downward' }}</i>
+          </button>
+          <button class="transparent" *ngIf="sortField.field" md-icon-button (click)="clearSorting()">
+            <i class="material-icons">close</i>
+          </button>
+        </div>
 
-        <md-select class="select-field" placeholder="Ресторан" [(ngModel)]="filters.vendor.value" name="vendor" (change)="run()">
-          <md-option *ngFor="let vendor of filters.vendor.settings.options" [value]="vendor">
-            {{ vendor }}
-          </md-option>
-        </md-select>
+        <div fxFlex></div>
 
-        <div class="price-filter">
-          <label>Цена до</label>
-          <md-slider
-              class="price-slider"
-              [(ngModel)]="filters.priceMax.value"
-              [max]="filters.priceMax.settings.max"
-              [step]="filters.priceMax.settings.step"
-              [thumb-label]="filters.priceMax.settings.thumbLabel"
-              [value]="filters.priceMax.value"
-              (change)="run()">
-          </md-slider>
-          <md-input-container class="price-input">
-            <input mdInput [(ngModel)]="filters.priceMax.value" (change)="run()">
-          </md-input-container>
+        <div class="filter-actions" fxLayout="row">
+          <pizza-filter-pagination [totalCount]="totalCount" (changed)="pageChanged($event)"></pizza-filter-pagination>
         </div>
       </div>
-      
-      <div class="sort-block">
-        <i class="material-icons">sort</i>
-        <md-select class="select-field" placeholder="Сортировать по" [(ngModel)]="sortField.field" name="sortField" (change)="run()">
-          <md-option *ngFor="let field of sortFields" [value]="field.name">
-            {{ field.desc }}
-          </md-option>
-        </md-select>
-        <button class="transparent" *ngIf="sortField.field" md-icon-button (click)="toogleSortDirection()">
-          <i class="material-icons">{{ sortField.direction == -1 ? 'arrow_upward' : 'arrow_downward' }}</i>
-        </button>
-        <button class="transparent" *ngIf="sortField.field" md-icon-button (click)="clearSorting()">
-          <i class="material-icons">close</i>
-        </button>
-      </div>
 
-      <div fxFlex></div>
 
-      <div class="filter-actions" fxLayout="row">
-        <!--<button class="text-uppercase" md-button (click)="search()">Поиск</button>
-        <button class="text-uppercase" md-button (click)="reset()">Сброс</button>-->
-        <pizza-filter-pagination [totalCount]="totalCount" (changed)="pageChanged($event)"></pizza-filter-pagination>
+      <div class="all-filters">
+        <button class="transparent" md-button (click)="filtersOpened = !filtersOpened">
+          <i class="material-icons"  [class.icon-opened]="filtersOpened">filter_list</i>
+          ФИЛЬТРЫ
+        </button>
       </div>
       
     </md-card-content>

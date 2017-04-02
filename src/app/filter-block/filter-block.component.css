@@ -35,3 +35,15 @@
 :host .price-input {
   width: 4ch;
 }
+
+:host .all-filters {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+:host .icon-opened {
+  transform: rotate(180deg);
+}
