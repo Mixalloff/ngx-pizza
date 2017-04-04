@@ -4,8 +4,9 @@ import { Component, OnInit, Output, EventEmitter, trigger, transition, style, an
 
 const DEFAULT_PAGINATION: Pagination = { skip: 0, limit: 25 };
 const DEFAULT_FILTERS: Filters = {
-  vendor: { operator: '$eq', settings: { options: ['Саюри', 'Voodoo-pizza', 'Фарфор'] } },
-  priceMax: { name: 'price', operator: '$lt', value: 1000, defaultValue: 1000, settings: { max: 1000, thumbLabel: true, step: 10 } }
+  // vendor: { operator: '$eq', value: [], defaultValue: [], settings: { options: ['Саюри', 'Voodoo-pizza', 'Фарфор'] } },
+  priceMax: { name: 'price', operator: '$lt', value: 1000, defaultValue: 1000, settings: { max: 1000, thumbLabel: true, step: 10 } },
+  category: { name: 'categories', operator: '$in', value: [], defaultValue: [], settings: {options: ['роллы', 'пицца'] } },
 };
 const SORT_FIELDS: Array<SortFieldSelector> = [
     { name: 'price', desc: 'Цена' },

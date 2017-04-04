@@ -10,7 +10,8 @@ export class RequestBuilder {
   }
 
   public addFilter(field: string, operator: RequestOperator, value: any) {
-    const key = `${ field }[${ operator }]`;
+    let suffix = Array.isArray(value) ? '[]' : ''; /**Suffix for arrays mark */
+    const key = `${ field }[${ operator }]${suffix}`;
     const filterField = { [ key ]: value };
     Object.assign(this._requestObject, filterField);
   }

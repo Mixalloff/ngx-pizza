@@ -1,7 +1,5 @@
 import { HttpRestService, GET, Path, QueryParam, QueryParams } from 'ngx-http-rest';
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 import RestConfig from 'app/core/configs/rest.config';
 
 @Injectable()

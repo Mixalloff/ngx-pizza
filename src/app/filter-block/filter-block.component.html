@@ -4,9 +4,15 @@
     <md-card-content class="filters-content-block" fxLayout="column">
       <div fxLayout="row" *ngIf="filtersOpened" [@enterAnimation]="filtersOpened">
         <div class="filters-fields">
-            <md-select class="select-field" placeholder="Ресторан" [(ngModel)]="filters.vendor.value" name="vendor" (change)="run()">
+            <!--<md-select class="select-field" placeholder="Ресторан" [(ngModel)]="filters.vendor.value" name="vendor" (change)="run()">
               <md-option *ngFor="let vendor of filters.vendor.settings.options" [value]="vendor">
                 {{ vendor }}
+              </md-option>
+            </md-select>-->
+
+            <md-select class="select-field" placeholder="Category" [(ngModel)]="filters.category.value[0]" name="category" (change)="run()">
+              <md-option *ngFor="let category of filters.category.settings.options" [value]="category">
+                {{ category }}
               </md-option>
             </md-select>
 
